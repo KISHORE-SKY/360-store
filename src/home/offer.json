@@ -1,0 +1,42 @@
+[
+    {
+        "offer":[
+            {
+                "id":1,
+                "offer":"50%",
+                "scheme":"year festivel",
+                "remaining":"few days only",
+                "img":"./home/homeSwipeimages/gadgets.jpg"
+            },
+            {
+                "id":2,
+                "offer":"upto 30%",
+                "scheme":"month festivel",
+                "remaining":"this week only",
+                "img":"./home/homeSwipeimages/menwear.jpg"
+            },
+            {
+                "id":3,
+                "offer":"upto 25%",
+                "scheme":"republic offer",
+                "remaining":"only before republic",
+                "img":"./home/homeSwipeimages/shoes.jpg"
+            },
+            {
+                "id":4,
+                "offer":"15%",
+                "scheme":"sunday offer",
+                "remaining":"only in weekend",
+                "img":"./home/homeSwipeimages/keyboardmouse.jpg"
+            },
+            {
+                "id":5,
+                "offer":"upto 70%",
+                "scheme":"january offer",
+                "remaining":"january month only",
+                "img":"./home/homeSwipeimages/womenwear.jpg"
+            }
+        ]
+        
+    }
+]

@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+@theme{
+    --color-green-navbar:#2C666E;
+    --color-text-navbar:#f0edee;
+    --color-primary-bg:#f0edee;
+    --color-primary-text:#2C666E;
+}
+
+@layer components{
+    .button-navbar{
+        @apply bg-text-navbar text-green-navbar rounded-md p-1 text-sm cursor-pointer
+    }
+}
