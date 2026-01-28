@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
+import {SwiperSlide,Swiper} from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 
 function OfferFetchHook() {
 
@@ -24,29 +29,43 @@ function OfferFetchHook() {
     },[])
     return(
         <>
-            {data.map(item=>(
-                <div key={item.id} style={{backgroundImage: `url(${item.image})`,backgroundRepeat:'no-repeat',
-                backgroundPosition:'center'}}
-                className="w-full h-[75vh] bg-primary-bg text-primary-text p-1 mt-4">
+            <Swiper
+            modules={[Navigation, Pagination, Autoplay]}
+            spaceBetween={10}
+            slidesPerView={1}
+            navigation
+            pagination={{ clickable: true }}
+            autoplay
+            onSlideChange={() => console.log('slide change')}
+            onSwiper={(swiper) => console.log(swiper)}
+            >
 
-                    <div>
-                        <h1 className="text-2xl">{item.title}</h1>
-                        <p className="text-lg">${item.price}</p>
-                    <div>
-                        <p>Remaining Stock:</p>
-                        <p className="text-lg">{item.rating.count}</p>
-                    </div>
-                    <div>
-                        <p>Users Rating:</p>
-                        <div className="flex items-center gap-1">
-                            <p className="text-lg">{item.rating.rate}</p>
-                            <FaStar />
-                        </div>
-                    </div>
-                    </div>
+            {data.map(item=>(
+                <SwiperSlide>
+                    <div key={item.id} 
+                        className="w-full h-screen text-primary-text p-2 mt-4 
+                         bg-primary-bg grid grid-cols-1 gap-1 justify-center
+                         md:p-3 md:pt-4 md:pb-4 md:grid-cols-2 md:h-auto" >
+                            <section className="flex flex-col md:items-center md:self-center">
+                                <div className="md:w-[265px]">
+                                    <h1 className="text-2xl font-semibold">{item.title}</h1>
+                                </div>
+                                    <p className="md:text-lg md:w-[265px]">Offer Price:</p>
+                                    <p className="offerProducts-details">${item.price}</p>
+                                    <p className="md:text-lg md:w-[265px]">Customers Rating:</p>
+                                    <div className="flex items-center gap-1 md:w-[265px] ">
+                                        <p className="text-lg font-semibold">{item.rating.rate}</p>
+                                        <FaStar className="text-yellow-500 text-lg" />
+                                    </div>
+                            </section>
+                            <section className="flex justify-center">
+                                <img src={item.image} className="max-w-[80%] h-[280px] md:h-[325px] md:max-w-[90%]"/>
+                            </section>
                     
-                </div>  
-            ))}
+                        </div>  
+                    </SwiperSlide>
+                ))}
+            </Swiper>
         </>
     );
 }
