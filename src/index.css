@@ -9,9 +9,14 @@
 
 @layer components{
     .button-navbar{
-        @apply bg-text-navbar text-green-navbar rounded-md p-1 text-sm cursor-pointer
+        @apply bg-text-navbar text-green-navbar rounded-md p-1 text-sm cursor-pointer hover:opacity-50
     }
     .offerProducts-details{
         @apply text-lg font-semibold md:w-[265px]
     }
+    .navbar-lists{
+        @apply text-text-navbar hover:opacity-50 cursor-pointer no-underline md:font-medium
+    }
 }
+
+

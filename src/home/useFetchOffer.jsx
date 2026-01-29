@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Link } from "react-router-dom";
 
 function OfferFetchHook() {
 
@@ -45,7 +46,7 @@ function OfferFetchHook() {
                     <div key={item.id} 
                         className="w-full h-screen text-primary-text p-2 mt-4 
                          bg-primary-bg grid grid-cols-1 gap-1 justify-center
-                         md:p-3 md:pt-4 md:pb-4 md:grid-cols-2 md:h-auto" >
+                         md:p-3 md:pt-4 md:pb-4 md:grid-cols-2 md:h-[70vh]" >
                             <section className="flex flex-col md:items-center md:self-center">
                                 <div className="md:w-[265px]">
                                     <h1 className="text-2xl font-semibold">{item.title}</h1>
@@ -58,8 +59,10 @@ function OfferFetchHook() {
                                         <FaStar className="text-yellow-500 text-lg" />
                                     </div>
                             </section>
-                            <section className="flex justify-center">
-                                <img src={item.image} className="max-w-[80%] h-[280px] md:h-[325px] md:max-w-[90%]"/>
+                            <section className="flex justify-center md:items-center">
+                                <Link to="/useFetchOffer/data.id">
+                                    <img src={item.image} className="max-w-[80%] h-[280px] md:h-[325px] md:max-w-[90%] cursor-pointer"/>
+                                </Link>
                             </section>
                     
                         </div>  
