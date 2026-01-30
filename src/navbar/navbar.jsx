@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 import { MdMenu } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { BsFillMoonStarsFill } from "react-icons/bs";
-import { FaSearch } from "react-icons/fa";
+//import { FaSearch } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 
 import * as React from 'react';
@@ -11,7 +11,7 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
-//import { FaMicrophoneAlt } from "react-icons/fa";
+import { FaMicrophoneAlt } from "react-icons/fa";
 
 
 function NavBarSection(){
@@ -64,7 +64,7 @@ function NavBarSection(){
                         className='hidden md:inline-block md:bg-text-navbar md:text-green-navbar md:outline-none md:px-[10px] md:rounded-md md:h-[30px]
                         md:placeholder:text-green-navbar 
                         md:w-[300px] lg:w-[400px]'/>
-                        <label htmlFor='searches'><FaSearch className='hidden md:inline-block md:text-lg md:text-text-navbar md:cursor-pointer'/></label>
+                        <label htmlFor='searches'><FaMicrophoneAlt className='hidden md:inline-block md:text-2xl md:text-text-navbar md:cursor-pointer'/></label>
                     </div>
                 </nav>
 
