@@ -44,10 +44,10 @@ function OfferFetchHook() {
             {data.map(item=>(
                 <SwiperSlide>
                     <div key={item.id} 
-                        className="w-full h-screen text-primary-text p-2 mt-4 
+                        className="w-full h-[700px] text-primary-text p-2 mt-4 
                          bg-primary-bg grid grid-cols-1 gap-1 justify-center
                          md:p-3 md:pt-4 md:pb-4 md:grid-cols-2 md:h-[70vh]" >
-                            <section className="flex flex-col md:items-center md:self-center">
+                            <section className="flex flex-col md:items-center md:self-center pt-7">
                                 <div className="md:w-[265px]">
                                     <h1 className="text-2xl font-semibold">{item.title}</h1>
                                 </div>
@@ -60,8 +60,8 @@ function OfferFetchHook() {
                                     </div>
                             </section>
                             <section className="flex justify-center md:items-center">
-                                <Link to="/useFetchOffer/data.id">
-                                    <img src={item.image} className="max-w-[80%] h-[280px] md:h-[325px] md:max-w-[90%] cursor-pointer"/>
+                                <Link to={`/productDetails/offerProducts/${item.id}`} className="w-fit self-center">
+                                    <img src={item.image} className="max-w-[300px] h-[280px] self-center md:h-[325px] md:max-w-[90%] cursor-pointer"/>
                                 </Link>
                             </section>
                     

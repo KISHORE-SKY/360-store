@@ -17,6 +17,12 @@
     .navbar-lists{
         @apply text-text-navbar hover:opacity-50 cursor-pointer no-underline md:font-medium
     }
+    .footer-boxses{
+        @apply flex flex-col items-center gap-1 text-center
+    }
+    .footer-links{
+        @apply no-underline cursor-pointer hover:opacity-60 text-text-navbar
+    }
 }
 
 
