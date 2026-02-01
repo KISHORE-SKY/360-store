@@ -5,7 +5,8 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import HeroSection from './home/hero.jsx'
 import './index.css'
 // import OfferFetchHook from './home/useFetchOffer'
-import OfferDetails from './productDetails/offerProducts.jsx'
+import OfferDetails from './productDetails/offerProducts.jsx';
+import MainProducts from './productDetails/products';
 
 const routerPages= createBrowserRouter([
   {
@@ -19,7 +20,11 @@ const routerPages= createBrowserRouter([
       {
         path:'/productDetails/offerProducts/:id',
         element:<OfferDetails />
-      }
+      },
+      {
+        path:'/productDetails/products/:id',
+        element:<MainProducts />
+      },
     ]
   }
 ])

@@ -13,16 +13,24 @@ import MenuItem from '@mui/material/MenuItem';
 //import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { FaMicrophoneAlt } from "react-icons/fa";
 
+import OutsideClickHandler from 'react-outside-click-handler';
 
 function NavBarSection(){
 
     const [hambergClicked,setHambergClicked]=useState('no');
+    //const [menuOutsideClicked,setMenuOutsideClicked]=useState(true);
 
     function hambergHandler() {
         if(hambergClicked==='no'){
             setHambergClicked('yes');
         }
         else{
+            setHambergClicked('no');
+        }
+    }
+
+    function outsideObserver() {
+        if(hambergClicked==='yes'){
             setHambergClicked('no');
         }
     }
@@ -50,13 +58,15 @@ function NavBarSection(){
         <>
             <header className="p-1 pt-4 pr-3 pl-3 bg-green-navbar text-text-navbar z-[99999] overflow-hidden 
             fixed top-0 left-0 w-full md:flex items-center justify-between md:pt-0 md:pr-4 md:pl:4">
-                <nav className={"flex flex-row items-center justify-between gap-4"}>
+                <nav className={"flex flex-row items-center justify-between gap-1 lg:gap-2"}>
                     <div>
-                        <h1 className="m-0 text-[20px] tracking-wide font-bold">360-Store</h1>
+                        <h1 className="m-0 text-[20px] tracking-wide font-bold md:font-semibold lg:font-bold">360-Store</h1>
                     </div>
+                    <OutsideClickHandler onOutsideClick={outsideObserver}>
                     <div className="md:hidden">
                         <MdMenu onClick={hambergHandler} className="cursor-pointer text-text-navbar text-2xl"/>
                     </div>
+                    </OutsideClickHandler>
 
                     <div className="hidden md:flex md:items-center md:gap-1">
                         
@@ -64,10 +74,12 @@ function NavBarSection(){
                         className='hidden md:inline-block md:bg-text-navbar md:text-green-navbar md:outline-none md:px-[10px] md:rounded-md md:h-[30px]
                         md:placeholder:text-green-navbar 
                         md:w-[300px] lg:w-[400px]'/>
-                        <label htmlFor='searches'><FaMicrophoneAlt className='hidden md:inline-block md:text-2xl md:text-text-navbar md:cursor-pointer'/></label>
+                        <FaMicrophoneAlt className='hidden md:inline-block md:text-lg md:text-text-navbar md:cursor-pointer'/>
                     </div>
                 </nav>
+                
 
+                
                 <ul className= {`flex flex-col gap-2 items-center p-2 pt-3 text-text-navbar transition-all duration-600 ease 
                 ${hambergClicked==='no' ?
                  "pointer-events-none opacity-0 translate-y-[-100px] max-h-0 z-[-1]" : 
@@ -85,6 +97,7 @@ function NavBarSection(){
                         <MdSunny className="text-2xl h-auto cursor-pointer"/>
                         <BsFillMoonStarsFill className="text-1xl h-auto cursor-pointer"/>
                     </div>
+                    
                     
                     <div className="hidden md:flex flex-col items-center gap-1 bg-green-navbar text-text-navbar">
                         <IconButton
@@ -136,6 +149,7 @@ function NavBarSection(){
                 </div>
    
                 </ul>
+                
             </header>
         </>
     );
