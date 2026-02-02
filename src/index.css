@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
+
+@theme {
+  /* This matches the 'fade458' animation from your CSS */
+  @keyframes fade-spinner {
+    from { opacity: 1; }
+    to { opacity: 0.25; }
+  }
+}
+
 @theme{
     --color-green-navbar:#2C666E;
     --color-text-navbar:#f0edee;
     --color-primary-bg:#f0edee;
     --color-primary-text:#2C666E;
     --color-cart-shadow:#2C666E;
+    
+
 }
 
 @layer components{

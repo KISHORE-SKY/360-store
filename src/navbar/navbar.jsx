@@ -3,15 +3,14 @@ import { Link } from "react-router-dom"
 import { MdMenu } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { BsFillMoonStarsFill } from "react-icons/bs";
-//import { FaSearch } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-//import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { FaMicrophoneAlt } from "react-icons/fa";
+
 
 import OutsideClickHandler from 'react-outside-click-handler';
 
@@ -68,13 +67,16 @@ function NavBarSection(){
                     </div>
                     </OutsideClickHandler>
 
-                    <div className="hidden md:flex md:items-center md:gap-1">
-                        
+                    <div className="md:flex md:items-center hidden md:mt-[3px] md:flex md:items-center md:gap-1 hidden md:bg-text-navbar md:text-green-navbar md:px-[10px] md:rounded-md md:fit
+                        text-green-navbar 
+                        md:w-[300px] lg:w-[400px]">
+                         <FaSearch className='hidden md:inline-block md:text-lg md:text-navbar-green md:cursor-pointer'/>
+
                         <input type='search' placeholder='Search' name='searches' id='searches'
                         className='hidden md:inline-block md:bg-text-navbar md:text-green-navbar md:outline-none md:px-[10px] md:rounded-md md:h-[30px]
                         md:placeholder:text-green-navbar 
                         md:w-[300px] lg:w-[400px]'/>
-                        <FaMicrophoneAlt className='hidden md:inline-block md:text-lg md:text-text-navbar md:cursor-pointer'/>
+                       
                     </div>
                 </nav>
                 
@@ -90,8 +92,8 @@ function NavBarSection(){
                     <li><Link to='/' className="navbar-lists">Home</Link></li>
                     <li><a className="navbar-lists">Products</a></li>
                     <li><Link className="navbar-lists">Contact</Link></li>
-                    <button className="button-navbar md:hidden">Signup</button>
-                    <button className="button-navbar md:hidden">Login</button>
+                    <button className="button-navbar md:hidden" ><Link to="/assets/UIcomponents/signup">Signup</Link></button>
+                    <button className="button-navbar md:hidden"><Link to="/assets/UIcomponents/login">Login</Link></button>
                     <button className="button-navbar md:hidden">Logout</button>
                     <div className="w-auto flex items-center">
                         <MdSunny className="text-2xl h-auto cursor-pointer"/>

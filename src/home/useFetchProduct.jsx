@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import LoaderProduct from '../assets/UIcomponents/productLoader';
+import { FaCalendar } from "react-icons/fa";
 
 function ProductionSection(){
     const [datas,setDatas]=useState([]);
@@ -53,7 +55,7 @@ function ProductionSection(){
             if(entries[0].isIntersecting){
                 setPage((prev)=>prev+1);
             }
-        },{threshold : 1.0});
+        },{threshold : 0.5});
 
         if(loaderRef.current){
             observer.observe(loaderRef.current);
@@ -94,7 +96,10 @@ function ProductionSection(){
                 ))}
 
                 <div ref={loaderRef} className="py-10 text-center font-bold text-gray-500 flex flex-col items-center justify-center md:col-span-2 lg:col-span-3">
-                    {hasMore ? "✨ Loading more items..." : "🏁 End of the collection"}
+                    {hasMore ? <p><LoaderProduct /></p> :   <div className="flex items-center gap-1">
+                                                                <FaCalendar className="text-primary-text text-2xl"/>
+                                                                <p className="text-primary-text text-lg">End of the products</p>
+                                                            </div>}
                 </div>
                 
             </section>
