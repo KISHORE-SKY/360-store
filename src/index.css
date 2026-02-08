@@ -14,9 +14,10 @@
     --color-text-navbar:#f0edee;
     --color-primary-bg:#f0edee;
     --color-primary-text:#2C666E;
-    --color-cart-shadow:#2C666E;
+    --color-form-bg:#f0edee;
+    --color-form-input:#ffffff;
+    --color-form-text:#2C666E;
     
-
 }
 
 @layer components{

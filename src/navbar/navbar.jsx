@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { MdMenu } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { BsFillMoonStarsFill } from "react-icons/bs";
@@ -36,9 +36,9 @@ function NavBarSection(){
 
     //user dropdown menu
     const options=[
-        'Signup',
-        'Login',
-        'Logout'
+        {label:'Signup',path:'/assets/UIcomponents/signup'},
+        {label:'Login',path:'/assets/UIcomponents/login'},
+        {label:'Logout'}
     ]
     const ITEM_HEIGHT = 48;
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -49,6 +49,13 @@ function NavBarSection(){
     const handleClose = () => {
         setAnchorEl(null);
     };
+
+        const navigate=useNavigate();
+        const handleClickItem=()=>{
+            handleClose();
+            navigate(path)
+        }
+    
 
 
     //   onMouseEnter={handleMouseEnter} // Attach the handler here
@@ -136,7 +143,7 @@ function NavBarSection(){
                         }}
                     >
                     {options.map((option) => (
-                        <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}
+                        <MenuItem key={option.label} selected={option === 'Pyxis'} onClick={()=>handleClickItem(option.path)}
                         disableRipple sx={{"&:hover,.MuiMenu-list":{
                             backgroundColor:'#f0edee',
                             color:'#2C666E',
@@ -144,7 +151,7 @@ function NavBarSection(){
                             
                         },
                         }}>
-                            {option}
+                            {option.label}
                         </MenuItem>
                     ))}
                     </Menu>

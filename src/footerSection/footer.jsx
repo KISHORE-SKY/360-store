@@ -18,8 +18,8 @@ function Footer() {
                     <ul>
                         <li><Link className="no-underline cursor-pointer hover:opacity-60 text-text-navbar" to="/">Home</Link></li>
                         <li><a className="footer-links">Products</a></li>
-                        <li><a className="footer-links">Signup</a></li>
-                        <li><a className="footer-links">Login</a></li>
+                        <li><Link className="footer-links" to="/assets/UIcomponents/signup">Signup</Link></li>
+                        <li><Link className="footer-links" to="/assets/UIcomponents/login">Login</Link></li>
                     </ul>
                 </div>
 

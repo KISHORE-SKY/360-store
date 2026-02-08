@@ -1,7 +1,8 @@
 import OfferFetchHook from './useFetchOffer.jsx';
 import { FaSearch } from "react-icons/fa";
 import ProductionSection from './useFetchProduct';
-
+import { FaShoppingBag } from "react-icons/fa";
+import { useState } from "react";
 
 //import {Link} from 'react-router-dom';
 
@@ -9,13 +10,18 @@ import ProductionSection from './useFetchProduct';
 
 function HeroSection() {
 
+    const [cartCount,setCartCount]=useState(0);
+    function addCartHandler(){
+        setCartCount(prev=>prev+=1);
+    }
+
     return(
         <>
             <main className="pt-10 mt-10 md:mt-0 md:pt-8 text-primary-text mb-[40px]">
 
                 <section className='pl-1 flex items-center gap-[2px] md:hidden'>
 
-                    <div className='flex items-center'>
+                    <div className='flex items-center gap-2'>
                         <div className='flex items-center gap-1 px-2 py-1 bg-primary-text text-primary-bg w-[250px] rounded-2xl h-[37px]
                             sm:w-[500px] lg:w-[650px]'>
                             <FaSearch/>
@@ -23,6 +29,10 @@ function HeroSection() {
                             className='bg-primary-text text-primary-bg w-[250px] outline-none rounded-2xl h-[37px]
                             placeholder:text-primary-bg 
                             sm:w-[500px] lg:w-[650px]'/>
+                        </div>
+                        <div>
+                            <FaShoppingBag className='text-2xl'/>
+                            <p>{cartCount}</p>
                         </div>
                     </div>
                     
