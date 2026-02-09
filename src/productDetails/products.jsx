@@ -97,7 +97,7 @@ function MainProducts(){
                                     <p className="font-semibold text-md lg:text-lg lg:font-bold">Comment by:</p>
                                     <p className="lg:text-[18px]">{review.reviewerName}</p>
                                 </div>
-                                {/* <p className="lg:text-[18px]">{review.reviewerEmail}</p> */}
+                                
                             </div>
                             
                         </div>

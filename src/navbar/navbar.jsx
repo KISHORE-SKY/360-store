@@ -6,6 +6,7 @@ import { BsFillMoonStarsFill } from "react-icons/bs";
 import { FaSearch } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 
+
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
@@ -106,6 +107,7 @@ function NavBarSection(){
                         <MdSunny className="text-2xl h-auto cursor-pointer"/>
                         <BsFillMoonStarsFill className="text-1xl h-auto cursor-pointer"/>
                     </div>
+                    
                     
                     
                     <div className="hidden md:flex flex-col items-center gap-1 bg-green-navbar text-text-navbar">

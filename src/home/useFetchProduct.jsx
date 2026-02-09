@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import LoaderProduct from '../assets/UIcomponents/productLoader';
 import { FaCalendar } from "react-icons/fa";
 
+
 function ProductionSection(){
     const [datas,setDatas]=useState([]);
     const [visibleProducts,setVisibleProducts]=useState([]);
@@ -12,7 +13,6 @@ function ProductionSection(){
     const [error,setError]=useState('');
 
     const loaderRef=useRef(null);
-
 
     useEffect(()=>{
         async function productsHome() {
@@ -88,7 +88,8 @@ function ProductionSection(){
                                 <FaStar className="text-yellow-500 lg:text-md"/>
                             </div>
                             <div>
-                                <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]">Add to cart</button>
+                                <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
+                                >Add to cart</button>
                             </div>
                         </div>
                         
