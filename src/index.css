@@ -2,7 +2,7 @@
 
 
 @theme {
-  /* This matches the 'fade458' animation from your CSS */
+
   @keyframes fade-spinner {
     from { opacity: 1; }
     to { opacity: 0.25; }
