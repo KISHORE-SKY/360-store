@@ -9,6 +9,8 @@
   }
 }
 
+@custom-varient dark (&:where([dark-theme=dark],[data-theme=dark]*));
+
 @theme{
     --color-green-navbar:#2C666E;
     --color-text-navbar:#f0edee;
@@ -18,6 +20,15 @@
     --color-form-input:#ffffff;
     --color-form-text:#2C666E;
     
+}
+[dark-theme="dark"]{
+    --color-green-navbar:#2C666E;
+    --color-text-navbar:#f0edee;
+    --color-primary-bg:#f0edee;
+    --color-primary-text:#ffffff;
+    --color-form-bg:#f0edee;
+    --color-form-input:#2C666E;
+    --color-form-text:#ffffff;
 }
 
 @layer components{

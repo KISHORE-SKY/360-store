@@ -3,7 +3,6 @@ import { Link, useNavigate } from "react-router-dom"
 import { MdMenu } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { BsFillMoonStarsFill } from "react-icons/bs";
-import { FaSearch } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 
 
@@ -18,7 +17,6 @@ import OutsideClickHandler from 'react-outside-click-handler';
 function NavBarSection(){
 
     const [hambergClicked,setHambergClicked]=useState('no');
-    //const [menuOutsideClicked,setMenuOutsideClicked]=useState(true);
 
     function hambergHandler() {
         if(hambergClicked==='no'){
@@ -47,6 +45,7 @@ function NavBarSection(){
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+    
     const handleClose = () => {
         setAnchorEl(null);
     };
@@ -57,10 +56,6 @@ function NavBarSection(){
             navigate(path)
         }
     
-
-
-    //   onMouseEnter={handleMouseEnter} // Attach the handler here
-    //   onMouseLeave={handleMouseLeave}
     return(
         <>
             <header className="p-1 pt-4 pr-3 pl-3 bg-green-navbar text-text-navbar z-[99999] overflow-hidden 
@@ -78,12 +73,7 @@ function NavBarSection(){
                     <div className="md:flex md:items-center hidden md:mt-[3px] md:flex md:items-center md:gap-1 hidden md:bg-text-navbar md:text-green-navbar md:px-[10px] md:rounded-md md:fit
                         text-green-navbar 
                         md:w-[300px] lg:w-[400px]">
-                         <FaSearch className='hidden md:inline-block md:text-lg md:text-navbar-green md:cursor-pointer'/>
-
-                        <input type='search' placeholder='Search' name='searches' id='searches'
-                        className='hidden md:inline-block md:bg-text-navbar md:text-green-navbar md:outline-none md:px-[10px] md:rounded-md md:h-[30px]
-                        md:placeholder:text-green-navbar 
-                        md:w-[300px] lg:w-[400px]'/>
+                         
                        
                     </div>
                 </nav>

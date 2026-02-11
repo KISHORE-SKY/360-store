@@ -9,6 +9,7 @@ import OfferDetails from './productDetails/offerProducts.jsx';
 import MainProducts from './productDetails/products';
 import Login from './assets/UIcomponents/login';
 import SignupForm from './assets/UIcomponents/signup.jsx';
+import Footer from './footerSection/footer'
 
 
 
@@ -22,20 +23,24 @@ const routerPages= createBrowserRouter([
         element:<HeroSection/>,
       },
       {
-        path:'/productDetails/offerProducts/:id',
+        path:'/offerProducts/:id',
         element:<OfferDetails />
       },
       {
-        path:'/productDetails/products/:id',
+        path:'/products/:id',
         element:<MainProducts />
       },
       {
-        path:'/assets/UIcomponents/login',
+        path:'/login',
         element:<Login />
       },
       {
-        path:'/assets/UIcomponents/signup',
+        path:'/signup',
         element:<SignupForm />
+      },
+      {
+        path:'/footer',
+        element:<Footer />
       }
      
     ]

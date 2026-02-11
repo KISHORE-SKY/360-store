@@ -1,13 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import OutsideClickHandler from "react-outside-click-handler";
+
 
 function Search() {
 
-    const [inputValue,setInputValue]=useState('');
+    const [inputValue,setInputValue]=useState("");
     const [error,setError]=useState('');
     const [data,setData]=useState([]);
-    const[hovered,setHovered]=useState('not_hovered');    
+    //const [open,setOpen]=useState(false);  
+    const wrapperRef=useRef(null);  
+    const [isTouch,setIsTouch] = useState(false);
+    
 
     useEffect(()=>{
         async function searchProducts() {
@@ -31,60 +36,70 @@ function Search() {
 
     function inputHandler(event){
         setInputValue(event.target.value);
-        console.log(inputValue);
+        console.log(typeof inputValue);
     }
     
     const filteredProducts = data.filter(item=>
             item.title.toLowerCase().includes(inputValue.toLowerCase())
-        );
-    
-    const mouseOverHandler=()=>{
-        setHovered('yes_hovered');
-    }
-    const mouseOutHandler=()=>{
-        setHovered('not_hovered');
-    }
+        )
 
-    const clickHandler=()=>{
-        setHovered('yes_hovered');
+    function clickHandler(){
+        setIsTouch(false)
     }
+    
 
     return(
         <>
+             
             <div className='flex items-center flex-col gap-1 w-[250px] reletive'
-                onMouseEnter={mouseOverHandler}
-                onMouseLeave={mouseOutHandler}
-                onClick={clickHandler}
-                    
-                    >
+                ref={wrapperRef}
+                onClick={() => setIsTouch(true)}
+                >
+                <OutsideClickHandler onOutsideClick={clickHandler}>
                 <div className='flex items-center gap-1 px-2 py-1 bg-primary-text text-primary-bg w-[250px] rounded-2xl h-[37px]
-                    sm:w-[500px] lg:w-[650px]'>
+                     sm:mt-4 md:mt-7 sm:w-[400px] lg:w-[455px]'>
                     <label htmlFor="searches" className="text-primary-bg"><FaSearch /></label>
+                    
                     <input type='search' placeholder='Search' name='searches' id='searches' 
                     value={inputValue} onChange={inputHandler}
-                     
+                    
                     className='bg-primary-text text-primary-bg w-[250px] outline-none rounded-2xl h-[37px]
                     placeholder:text-primary-bg 
-                    sm:w-[500px] lg:w-[650px]'
+                    sm:w-[400px] lg:w-[455px]'
                     />
                     
                 </div>
+                
 
                 {error && <p>{error}</p>}
 
-                {hovered==='yes_hovered' && <div className="border border-primary-text border-solid bg-primary-bg p-2 rounded-[20px] overflow-y-hidden h-[80px] flex flex-col items-center
-                absolute z-[10000] top-[75px]">
-                    {filteredProducts.map(product=>(
-                    <Link to={`/productDetails/products${product.id}`} key={product.id}>
+                
+                
+                {isTouch && 
+                
+                <div className="border border-primary-text border-solid bg-primary-bg p-2 rounded-[20px] overflow-y-hidden h-[80px] w-[250px] flex flex-col
+                 items-center absolute z-[10000] top-[120px] sm:top-[140px] sm:w-[400px] lg:w-[455px] md:top-[105px]">
+                    
+                   {inputValue && filteredProducts.length === 0 && (
+                    <p>Product not available</p>
+                    )}
+
+                    {filteredProducts.map(item=>(
+                    <Link to={`/products/${item.id}`} key={item.id}>
                         <div className="my-1">
-                            <p>{product.title}</p>
+                            <p>{item.title}</p>
                         </div>
                     </Link>
                     ))}
-                </div>}
-              
-                                    
+                    
+                </div>
+                
+                }
+                </OutsideClickHandler>  
+                
+                
             </div>
+                       
         </>
     );
 }

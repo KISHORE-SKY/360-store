@@ -29,9 +29,12 @@ function MainProducts(){
 
     return(
         <>
+
             <section className="p-3 pb-5 min-h-screen pt-[90px] grid grid-cols-[minmax(275px,300px)] gap-1 justify-center text-center bg-primary-bg text-primary-text
             sm:grid-cols-[minmax(350px,400px)] md:grid-cols-[minmax(275px,300px)_minmax(275px,300px)] md:text-left
             lg:grid-cols-[minmax(400px,475px)_minmax(350px,375px)] lg:gap-[0px]">
+
+
                 <div className="flex flex-col gap-1 md:order-2 md:justify-center md:items-start">
                     <div>
                         <div className="flex items-center justify-center gap-1 md:justify-start">

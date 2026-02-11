@@ -71,7 +71,7 @@ function ProductionSection(){
                     <div key={item.id} className="grid grid-cols-[minmax(250px,275px)] justify-center items-center p-3 bg-primary-bg rounded-md text-primary-text h-auto sm:h-[425px]
                     hover:shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] hover:translate-y-[-5px] transition-all duration-200 ease">
                         <div className="flex justify-center">
-                            <Link to={`/productDetails/products/${item.id}`}>
+                            <Link to={`/products/${item.id}`}>
                                 <img className="w-[225px] h-auto sm:w-[250px] sm:h-[250px]" src={item.images?.[0]} alt={item.title}/>
                             </Link>
                             

@@ -190,7 +190,7 @@ function SignupForm(){
                     </div>
 
                     <div className="flex justify-start align-center gap-2">
-                        <p>you already have a account? <Link to='/assets/UIcomponents/login' className="font-semibold text-lg">login</Link></p>    
+                        <p>you already have a account? <Link to='/login' className="font-semibold text-lg">login</Link></p>    
                     </div>
                             
                 </form>     

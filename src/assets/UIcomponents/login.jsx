@@ -94,7 +94,7 @@ function Login(){
                     </div>
 
                     <div className="flex-col items-end w-[250px] mb-2">
-                        <p className="text-right">you didn't have account? <Link to='/assets/UIcomponents/signup' className="font-semibold text-lg">signup</Link></p>
+                        <p className="text-right">you didn't have account? <Link to='/signup' className="font-semibold text-lg">signup</Link></p>
                     </div>
                 </form>
             </section>

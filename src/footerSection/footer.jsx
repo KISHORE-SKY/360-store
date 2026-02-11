@@ -8,7 +8,7 @@ function Footer() {
     return(
         <>
             <footer className="grid grid-cols-1 justify-center w-full gap-3 pt-5 pb-5 bg-green-navbar text-text-navbar p-3
-            sm:grid-cols-2 md:justify-start md:p-4 lg:py-10 lg:grid-cols-[minmax(360px,375px)_repeat(3,minmax(175px,200px))]">
+            sm:grid-cols-2 md:justify-start md:p-4 lg:py-10 lg:grid-cols-[minmax(360px,375px)_repeat(3,minmax(175px,200px))]" id='contact'>
                 <div className="flex justify-center md:justify-start">
                     <h1 className="font-semibold text-lg lg:text-2xl">360-Store</h1>
                 </div>
