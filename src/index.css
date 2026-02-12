@@ -9,26 +9,36 @@
   }
 }
 
-@custom-varient dark (&:where([dark-theme=dark],[data-theme=dark]*));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme{
     --color-green-navbar:#2C666E;
     --color-text-navbar:#f0edee;
+
+    --color-bg-section:#ffffff;
     --color-primary-bg:#f0edee;
     --color-primary-text:#2C666E;
+   
+
     --color-form-bg:#f0edee;
     --color-form-input:#ffffff;
     --color-form-text:#2C666E;
     
+
+   
 }
-[dark-theme="dark"]{
-    --color-green-navbar:#2C666E;
+.dark{
+   --color-green-navbar:#2C666E;
     --color-text-navbar:#f0edee;
+
+    --color-bg-section:#ffffff;
     --color-primary-bg:#f0edee;
-    --color-primary-text:#ffffff;
+    --color-primary-text:#2C666E;
+   
+
     --color-form-bg:#f0edee;
-    --color-form-input:#2C666E;
-    --color-form-text:#ffffff;
+    --color-form-input:#ffffff;
+    --color-form-text:#2C666E;
 }
 
 @layer components{

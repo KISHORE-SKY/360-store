@@ -96,7 +96,7 @@ function ProductionSection(){
                     </div>
                 ))}
 
-                <div ref={loaderRef} className="py-10 text-center font-bold text-gray-500 flex flex-col items-center justify-center md:col-span-2 lg:col-span-3">
+                <div ref={loaderRef} className="py-10 text-center font-bold text-gray-500 flex flex-col items-center justify-center sm:col-span-2 md:col-span-2 lg:col-span-3">
                     {hasMore ? <LoaderProduct /> :   <div className="flex items-center gap-1">
                                                                 <FaCalendar className="text-primary-text text-2xl"/>
                                                                 <p className="text-primary-text text-lg">End of the products</p>

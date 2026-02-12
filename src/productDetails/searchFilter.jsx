@@ -78,7 +78,7 @@ function Search() {
                 {isTouch && 
                 
                 <div className="border border-primary-text border-solid bg-primary-bg p-2 rounded-[20px] overflow-y-hidden h-[80px] w-[250px] flex flex-col
-                 items-center absolute z-[10000] top-[120px] sm:top-[140px] sm:w-[400px] lg:w-[455px] md:top-[105px]">
+                 items-center absolute z-[10000] top-[145px] sm:top-[160px] sm:w-[400px] lg:w-[455px] md:top-[140px]">
                     
                    {inputValue && filteredProducts.length === 0 && (
                     <p>Product not available</p>

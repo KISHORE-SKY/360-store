@@ -4,7 +4,7 @@ import { MdMenu } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
-
+import {useTheme} from './themeContext'
 
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -17,6 +17,8 @@ import OutsideClickHandler from 'react-outside-click-handler';
 function NavBarSection(){
 
     const [hambergClicked,setHambergClicked]=useState('no');
+    const {theme,toggleTheme}=useTheme();
+    //const navigate=useNavigate();
 
     function hambergHandler() {
         if(hambergClicked==='no'){
@@ -35,9 +37,9 @@ function NavBarSection(){
 
     //user dropdown menu
     const options=[
-        {label:'Signup',path:'/assets/UIcomponents/signup'},
-        {label:'Login',path:'/assets/UIcomponents/login'},
-        {label:'Logout'}
+        {label:'Signup',path:'/signup'},
+        {label:'Login',path:'/login'},
+        {label:'Logout',action:'logout'}
     ]
     const ITEM_HEIGHT = 48;
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -51,9 +53,18 @@ function NavBarSection(){
     };
 
         const navigate=useNavigate();
-        const handleClickItem=()=>{
+        const handleClickItem=(option)=>{
             handleClose();
-            navigate(path)
+            
+            if (option.path) {
+                navigate(option.path);  
+            } else if (option.action === 'logout') {
+        
+                //console.log('Logging out...');
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                navigate('/login');
+            }
         }
     
     return(
@@ -90,12 +101,12 @@ function NavBarSection(){
                     <li><Link to='/' className="navbar-lists">Home</Link></li>
                     <li><a className="navbar-lists">Products</a></li>
                     <li><Link className="navbar-lists">Contact</Link></li>
-                    <button className="button-navbar md:hidden" ><Link to="/assets/UIcomponents/signup">Signup</Link></button>
-                    <button className="button-navbar md:hidden"><Link to="/assets/UIcomponents/login">Login</Link></button>
+                    <button className="button-navbar md:hidden" ><Link to="/signup">Signup</Link></button>
+                    <button className="button-navbar md:hidden"><Link to="/login">Login</Link></button>
                     <button className="button-navbar md:hidden">Logout</button>
-                    <div className="w-auto flex items-center">
-                        <MdSunny className="text-2xl h-auto cursor-pointer"/>
-                        <BsFillMoonStarsFill className="text-1xl h-auto cursor-pointer"/>
+                    <div className="w-[25px] flex items-center" onClick={toggleTheme}>
+                        {theme==='dark' ? <MdSunny className="text-2xl h-auto cursor-pointer"/>
+                        : <BsFillMoonStarsFill className="text-1xl h-auto cursor-pointer"/>}
                     </div>
                     
                     
@@ -135,7 +146,7 @@ function NavBarSection(){
                         }}
                     >
                     {options.map((option) => (
-                        <MenuItem key={option.label} selected={option === 'Pyxis'} onClick={()=>handleClickItem(option.path)}
+                        <MenuItem key={option.label} selected={option === 'Pyxis'} onClick={()=>handleClickItem(option)}
                         disableRipple sx={{"&:hover,.MuiMenu-list":{
                             backgroundColor:'#f0edee',
                             color:'#2C666E',
