@@ -30,7 +30,7 @@ function OfferDetails() {
    return(
     <>
         
-            <section className="pt-10 mt-10 p-2 pb-4 bg-primary-bg text-primary-text
+            <section className="pt-10 mt-10 p-2 pb-4 bg-product-bg text-primary-text
             grid grid-cols-1 justify-center gap-3 md:grid-cols-[minmax(300px,500px)_minmax(300px,350px)] h-auto">
                 
                 <div className="flex flex-col gap-1 sm:items-center md:justify-center md:items-start md:order-2">

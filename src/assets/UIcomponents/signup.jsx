@@ -120,13 +120,13 @@ function SignupForm(){
 
     return(
         <>
-            <section className="flex flex-col items-center py-7 pt-[80px] mt-5 gap-3">
+            <section className="flex flex-col items-center py-7 bg-bg-section pt-[80px] mt-5 gap-3">
                 <div>
                     <h1 className="text-2xl text-primary-text font-semibold">Signup</h1>
                 </div>
 
                 <form className="flex flex-col gap-[10px] items-center bg-form-bg text-form-text p-[20px] rounded-[10px] w-[295px]
-                sm:w-[375px]">
+                sm:w-[375px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)]">
                     <div className="flex flex-col gap-[4px]">
                         <label htmlFor="name">Username:</label>
                         <div className="w-[275px] h-[35px] rounded-[5px] text-form-text px-2 bg-form-input flex items-center

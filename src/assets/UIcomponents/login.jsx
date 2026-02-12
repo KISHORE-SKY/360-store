@@ -56,10 +56,10 @@ function Login(){
 
     return(
         <>
-            <section className="grid grid-cols-[minmax(290px,300px)] justify-center py-9 pt-[95px] px-1
+            <section className="grid grid-cols-[minmax(290px,300px)] justify-center bg-bg-section py-9 pt-[95px] px-1
             sm:grid-cols-[minmax(340px,365px)] md:grid-cols-[minmax(350px,375px)] gap-3">
 
-                <h2 className="text-form-text font-bold text-2xl text-center h-fit">LOGIN</h2>
+                <h2 className="text-form-text font-bold text-2xl text-center h-fit text-primary-text">LOGIN</h2>
 
                 <form className="flex flex-col gap-[10px] items-center bg-form-bg text-form-text p-[20px] rounded-[10px] w-[290px]
                 shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)]  sm:w-[335px] md:w-[350px] md:m-2 h-fit">
@@ -88,7 +88,7 @@ function Login(){
                     </div>
                             
                     <div>
-                        <button className="w-[75px] h-[30px] border-none outline-none bg-primary-text text-primary-bg rounded-[5px] 
+                        <button className="w-[75px] h-[30px] border-none outline-none bg-green-navbar text-text-navbar rounded-[5px] 
                         transition duration-300 ease-in-out hover:opacity-[0.8] cursor-pointer" 
                         onClick={LoginHandler}>Login</button>
                     </div>

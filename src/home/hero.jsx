@@ -9,7 +9,7 @@ function HeroSection() {
 
     return(
         <>
-            <main className="pt-[100px] pb-[50px] md:pt-[70px] pb-[70px] w-full text-primary-text">
+            <main className="pt-[100px] pb-[50px] md:pt-[70px] pb-[70px] w-full bg-bg-section text-primary-text">
 
                 <section className='pl-1 flex items-center justify-center gap-[2px]'>
                    <Search />             

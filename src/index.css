@@ -18,7 +18,7 @@
     --color-bg-section:#ffffff;
     --color-primary-bg:#f0edee;
     --color-primary-text:#2C666E;
-   
+    --color-product-bg:#f0edee;
 
     --color-form-bg:#f0edee;
     --color-form-input:#ffffff;
@@ -31,10 +31,10 @@
    --color-green-navbar:#2C666E;
     --color-text-navbar:#f0edee;
 
-    --color-bg-section:#ffffff;
-    --color-primary-bg:#f0edee;
-    --color-primary-text:#2C666E;
-   
+    --color-bg-section:rgba(0,0,0,0.5);
+    --color-primary-bg:#2C666E;
+    --color-primary-text:#f0edee;
+    --color-product-bg:rgba(0,0,0,0.5);
 
     --color-form-bg:#f0edee;
     --color-form-input:#ffffff;
