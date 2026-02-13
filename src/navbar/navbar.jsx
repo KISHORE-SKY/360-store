@@ -128,7 +128,7 @@ function NavBarSection(){
                         anchorEl={anchorEl}
                         open={open}
                         disableScrollLock={true}
-                        disablePadding={true}
+                        disablepadding={true}
                         onClose={handleClose}
                         slotProps={{
                             paper: {

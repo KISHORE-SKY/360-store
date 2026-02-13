@@ -11,6 +11,8 @@ import Login from './assets/UIcomponents/login';
 import SignupForm from './assets/UIcomponents/signup.jsx';
 import Footer from './footerSection/footer'
 
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 
 
 const routerPages= createBrowserRouter([
@@ -48,7 +50,9 @@ const routerPages= createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={routerPages}/>
-  </StrictMode>
+  <Provider store={store}>
+    <StrictMode>
+      <RouterProvider router={routerPages}/>
+    </StrictMode>
+  </Provider>
 )

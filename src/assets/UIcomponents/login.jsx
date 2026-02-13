@@ -4,7 +4,9 @@ import { IoEyeSharp } from "react-icons/io5";
 import { RiUserFill } from "react-icons/ri";
 import {Link} from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
-
+import { useDispatch } from "react-redux";
+import { login } from "../../privateRouter/authendication/authSlice";
+import { MdOutlineManageAccounts } from "react-icons/md";
 
 function Login(){
     const [loginUsername,setLoginUsername]=useState('');
@@ -13,6 +15,9 @@ function Login(){
     const [loginErrorPassword,setLoginErrorPassword]=useState('');
     const [typeInput,setType]=useState('password');
     const loginnamePattern=/^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{1,18}[a-zA-Z0-9])$/;
+    const [clientLogged,setClientLogged]=useState(false);
+
+    const dispatch=useDispatch();
 
     function loginShowPassword(){
         setType('text');
@@ -50,8 +55,13 @@ function Login(){
 
     function LoginHandler(event){
         event.preventDefault();
-        loginUserNameCheck();
-        loginPasswordCheck();
+        const isValidUsername= loginUserNameCheck();
+        const isValidPassword= loginPasswordCheck();
+
+        if(isValidUsername && isValidPassword){
+            dispatch(login({username})) 
+            setClientLogged(true); 
+        }
     }
 
     return(
@@ -62,7 +72,8 @@ function Login(){
                 <h2 className="text-form-text font-bold text-2xl text-center h-fit text-primary-text">LOGIN</h2>
 
                 <form className="flex flex-col gap-[10px] items-center bg-form-bg text-form-text p-[20px] rounded-[10px] w-[290px]
-                shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)]  sm:w-[335px] md:w-[350px] md:m-2 h-fit">
+                shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)]  sm:w-[335px] md:w-[350px] md:m-2 h-fit" onSubmit={LoginHandler}>
+
                     <div className="flex flex-col gap-[4px]">                                
                     <label htmlFor="logusername" className="md:font-semibold">Username:</label>
                         <div className="w-[250px] h-[37px] flex items-center rounded-[10px] px-2 bg-form-input text-form-text 
@@ -86,11 +97,16 @@ function Login(){
                         </div>
                         <p className="text-red-600 h-[20px]">{loginErrorPassword}</p>
                     </div>
+
+                    {clientLogged && <div className="bg-green-400/40 text-black p-2 rounded-md flex items-center gap-1">
+                        <MdOutlineManageAccounts />
+                        <p className="text-sm">sucessfully logged</p>
+                    </div>}
                             
                     <div>
                         <button className="w-[75px] h-[30px] border-none outline-none bg-green-navbar text-text-navbar rounded-[5px] 
                         transition duration-300 ease-in-out hover:opacity-[0.8] cursor-pointer" 
-                        onClick={LoginHandler}>Login</button>
+                        type="submit">Login</button>
                     </div>
 
                     <div className="flex-col items-end w-[250px] mb-2">
