@@ -30,15 +30,14 @@ function Login(){
         setLoginUsername(event.target.value);
     }
     function loginUserNameCheck() {
-        if(loginUsername===""){
-            setLoginErrorUser('please enter username');
-        }
-        else if(!loginnamePattern.test(loginUsername)){
+        if(!loginnamePattern.test(loginUsername)){
             setLoginErrorUser('please enter valid username');
+            return false;
         }
-        else{
-            setLoginErrorUser('');
-        }
+        
+        setLoginErrorUser('');
+        return true;
+        
     }
 
     function loginPasswordHandler(event){
@@ -47,20 +46,29 @@ function Login(){
     function loginPasswordCheck() {
         if(loginPassword===""){
             setLoginErrorPassword('please enter password');
+            return false;
         }
-        else{
-            setLoginErrorPassword('');
-        }
+        
+        setLoginErrorPassword('');
+        return true;
+        
     }
 
     function LoginHandler(event){
         event.preventDefault();
         const isValidUsername= loginUserNameCheck();
         const isValidPassword= loginPasswordCheck();
+        console.log(isValidUsername);
+        
 
         if(isValidUsername && isValidPassword){
-            dispatch(login({username})) 
-            setClientLogged(true); 
+            console.log('run dispatch');
+            
+            dispatch(login({username:loginUsername})) 
+            setClientLogged(true)
+        }
+        else{
+            setClientLogged(false);
         }
     }
 

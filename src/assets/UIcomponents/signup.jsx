@@ -5,6 +5,10 @@ import { RiUserFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { FaEyeSlash } from "react-icons/fa";
+import { MdOutlineManageAccounts } from "react-icons/md";
+
+import { useDispatch } from "react-redux";
+import { signup } from "../../privateRouter/authendication/authSlice";
 
 function SignupForm(){
     const [signUpusername,setSignupUsername]=useState('');
@@ -20,77 +24,85 @@ function SignupForm(){
     const signupEmailPattern=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/;
     const signupusernamePattern=/^[a-zA-Z0-9](?:[a-zA-Z0-9._-]{1,18}[a-zA-Z0-9])$/;
 
+    const [signed,setSigned]=useState(false);
+    const dispatch = useDispatch();
+
     function signupUsernameHandler(event){
         setSignupUsername(event.target.value);
     }
    
     function signupusernameCheck() {
-        if(signUpusername===""){
-            setSignupErrorMessage(prev=>({
-                ...prev,username:'please Enter username'}));
-        }
-        else if(!signupusernamePattern.test(signUpusername)){
+        // if(signUpusername===""){
+        //     setSignupErrorMessage(prev=>({
+        //         ...prev,username:'please Enter username'}));
+        // }
+         if(!signupusernamePattern.test(signUpusername)){
             setSignupErrorMessage(prev=>({
                 ...prev,username:'Caps,nums,sml,_,-  only allowed'}));
+                return false;
         }
-        else{
-            setSignupErrorMessage(prev=>({
-                ...prev,username:''}));
+        
+        setSignupErrorMessage(prev=>({
+            ...prev,username:''}));
+            return true;
         }
-    }
 
     function signupEmailHandler(event){
         setSignupEmail(event.target.value);
     }
     function signUpemailCheck(){
-        if(signupEmail===""){
-            setSignupErrorMessage(prev=>({
-                ...prev,email:'please enter email'}));
-        }
-        else if(!signupEmailPattern.test(signupEmail)){
+        // if(signupEmail===""){
+        //     setSignupErrorMessage(prev=>({
+        //         ...prev,email:'please enter email'}));
+        // }
+         if(!signupEmailPattern.test(signupEmail)){
             setSignupErrorMessage(prev=>({
                 ...prev,email:'enter valid email'}));
+            return false;
         }
-        else{
-            setSignupErrorMessage(prev=>({
-                ...prev,email:''}));
-        }
+        setSignupErrorMessage(prev=>({
+            ...prev,email:''}));
+        return true;
     }
 
     function signupPasswordHandler(event){
         setSignupPassword(event.target.value);
     }
     function signupPasswordValid(){
-        if(signupPassword===""){
+        // if(signupPassword===""){
+        //     setSignupErrorMessage(prev=>({
+        //         ...prev,password:'please enter password'}));
+        // }
+         if(signupPassword.length<8){
             setSignupErrorMessage(prev=>({
-                ...prev,password:'please enter password'}));
+                ...prev,password:'password should atleast eight chars'}));
+            return false;
         }
-        else if(signupPassword.length<8){
-            setSignupErrorMessage(prev=>({
-                ...prev,password:'your password is weak'}));
-        }
-        else{
+        
             setSignupErrorMessage(prev=>({
                 ...prev,password:''}));
-        }
+            return true;
+        
     }
 
     function signupConfirmHandle(event){
         setConfirmSignUp(event.target.value);
     }
     function confirmPasswordValid() {
-        if(confirmSignup===""){
-            setSignupErrorMessage(prev=>({
-                ...prev,confirmPassword:'please render to confirm password'}));
-        }
-        else if(confirmSignup !== signupPassword){
+        // if(confirmSignup===""){
+        //     setSignupErrorMessage(prev=>({
+        //         ...prev,confirmPassword:'please render to confirm password'}));
+        // }
+        if(confirmSignup !== signupPassword){
              setSignupErrorMessage(prev=>({
                 ...prev,confirmPassword:'password is did not match'}));
+            return false;
         }
-        else{
+        
              setSignupErrorMessage(prev=>({
                 ...prev,confirmPassword:''}));
-        }
+            return true;
+        
     }
 
     const [firstPasswordType,setFirstPasswordType]=useState("password");
@@ -112,10 +124,19 @@ function SignupForm(){
     function SignUpValidation(event) {
         event.preventDefault();
      
-        signupusernameCheck();
-        signUpemailCheck();
-        signupPasswordValid();
-        confirmPasswordValid();
+        const usernameValid = signupusernameCheck();
+        const emailValid = signUpemailCheck();
+        const passwordValid = signupPasswordValid();
+        const confirmValid = confirmPasswordValid();
+
+        if(usernameValid && emailValid && passwordValid && confirmValid){
+            dispatch(signup({username:signUpusername}));
+            //dispatch(signup({useremail:signupEmail})); 
+            setSigned(true);
+        }
+        else{
+            setSigned(false);
+        }
     }
 
     return(
@@ -126,7 +147,7 @@ function SignupForm(){
                 </div>
 
                 <form className="flex flex-col gap-[10px] items-center bg-form-bg text-form-text p-[20px] rounded-[10px] w-[295px]
-                sm:w-[375px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)]">
+                sm:w-[375px] shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)]" onSubmit={SignUpValidation}>
                     <div className="flex flex-col gap-[4px]">
                         <label htmlFor="name">Username:</label>
                         <div className="w-[275px] h-[35px] rounded-[5px] text-form-text px-2 bg-form-input flex items-center
@@ -182,11 +203,15 @@ function SignupForm(){
                         <p className="text-red-600 h-[20px]">{signupErrorMessage.confirmPassword}</p>
                     </div>
 
+                    {signed && <div className="bg-green-400/40 text-black p-2 rounded-md flex items-center gap-1">
+                        <MdOutlineManageAccounts />
+                        <p className="text-sm">sucessfully registered</p>
+                    </div>}
 
                     <div className="flex justify-center">
                         <button className="w-[75px] h-[30px] border-none outline-none bg-form-text 
                         text-form-bg rounded-[5px] transition duration-300 ease-in-out hover:opacity-[0.8] cursor-pointer" 
-		                onClick={SignUpValidation}>Sign Up</button>
+		                type="submit">Sign Up</button>
                     </div>
 
                     <div className="flex justify-start align-center gap-2">

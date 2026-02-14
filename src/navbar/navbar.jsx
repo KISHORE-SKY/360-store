@@ -4,7 +4,10 @@ import { MdMenu } from "react-icons/md";
 import { MdSunny } from "react-icons/md";
 import { BsFillMoonStarsFill } from "react-icons/bs";
 import { FaUserCircle } from "react-icons/fa";
-import {useTheme} from './themeContext'
+import {useTheme} from './themeContext';
+import { useDispatch } from "react-redux";
+import { logout } from "../privateRouter/authendication/authSlice";
+// import { useNavigate } from "react-router-dom";
 
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -52,7 +55,11 @@ function NavBarSection(){
         setAnchorEl(null);
     };
 
+        const dispatch=useDispatch();
         const navigate=useNavigate();
+
+        
+
         const handleClickItem=(option)=>{
             handleClose();
             
@@ -60,10 +67,10 @@ function NavBarSection(){
                 navigate(option.path);  
             } else if (option.action === 'logout') {
         
-                //console.log('Logging out...');
-                localStorage.removeItem('token');
-                localStorage.removeItem('user');
-                navigate('/login');
+                // localStorage.removeItem('token');
+                // localStorage.removeItem('user');
+                dispatch(logout());
+                navigate('/');
             }
         }
     
@@ -128,7 +135,6 @@ function NavBarSection(){
                         anchorEl={anchorEl}
                         open={open}
                         disableScrollLock={true}
-                        disablepadding={true}
                         onClose={handleClose}
                         slotProps={{
                             paper: {

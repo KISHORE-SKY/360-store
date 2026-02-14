@@ -3,7 +3,10 @@ import { FaStar } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import LoaderProduct from '../assets/UIcomponents/productLoader';
 import { FaCalendar } from "react-icons/fa";
-
+import { useSelector } from "react-redux";
+import { signup } from "../privateRouter/authendication/authSlice";
+import { login } from "../privateRouter/authendication/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function ProductionSection(){
     const [datas,setDatas]=useState([]);
@@ -13,6 +16,7 @@ function ProductionSection(){
     const [error,setError]=useState('');
 
     const loaderRef=useRef(null);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         async function productsHome() {
@@ -64,6 +68,17 @@ function ProductionSection(){
         return ()=> observer.disconnect();
     },[hasMore,datas]);
 
+    const user=useSelector((state)=> state.auth.user);
+    function addToCartHandler(products){
+        if(!user){
+            navigate("/login");
+            return;
+        }
+
+        // dispatch(addToCart(products));
+
+    }
+
     return(
         <>
             <section className="grid grid-cols-1 justify-center pt-3 gap-6 sm:grid-cols-2 sm:items-center md:grid-cols-2 lg:grid-cols-3">
@@ -89,7 +104,7 @@ function ProductionSection(){
                             </div>
                             <div>
                                 <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
-                                >Add to cart</button>
+                                onClick={addToCartHandler}>Add to cart</button>
                             </div>
                         </div>
                         
