@@ -71,7 +71,7 @@ function Search() {
                 </div>
                 
 
-                {error && <p>{error}</p>}
+                {/* {error && <p>{error}</p>} */}
 
                 
                 

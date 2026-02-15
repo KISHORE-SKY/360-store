@@ -9,7 +9,7 @@ function Footer() {
         <>
             <footer className="grid grid-cols-1 justify-center w-full gap-3 pt-5 pb-5 bg-green-navbar text-text-navbar p-3
             sm:grid-cols-2 md:justify-start md:p-4 lg:py-10 lg:grid-cols-[minmax(360px,375px)_repeat(3,minmax(175px,200px))]" id='contact'>
-                <div className="flex justify-center md:justify-start">
+                <div className="flex justify-center md:justify-start" id="contact">
                     <h1 className="font-semibold text-lg lg:text-2xl">360-Store</h1>
                 </div>
 
@@ -17,7 +17,7 @@ function Footer() {
                     <h3 className="font-semibold">Quik Navigation</h3>
                     <ul>
                         <li><Link className="no-underline cursor-pointer hover:opacity-60 text-text-navbar" to="/">Home</Link></li>
-                        <li><a className="footer-links">Products</a></li>
+                        <li><a className="footer-links" href="#product">Products</a></li>
                         <li><Link className="footer-links" to="/signup">Signup</Link></li>
                         <li><Link className="footer-links" to="/login">Login</Link></li>
                     </ul>

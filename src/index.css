@@ -42,6 +42,9 @@
 }
 
 @layer components{
+    html {
+        @apply scroll-smooth
+    }
     .button-navbar{
         @apply bg-text-navbar text-green-navbar rounded-md p-1 text-sm cursor-pointer hover:opacity-50
     }

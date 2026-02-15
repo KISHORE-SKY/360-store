@@ -1,12 +1,19 @@
 import { useEffect, useState } from "react";
 import { FaStar } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCart } from "../privateRouter/authendication/productSlice";
+
 
 function OfferDetails() {
 
     const {id}=useParams();
     const [product,setProduct]=useState(null);
     const [error,setError]=useState('');
+    const navigate=useNavigate();
+
    useEffect(()=>{
     async function productHandler() {
         const url=`https://fakestoreapi.com/products/${id}`;
@@ -24,6 +31,18 @@ function OfferDetails() {
     }
     productHandler();
    },[id])
+
+   const user = useSelector((state)=>state.auth.user);
+   const dispatch=useDispatch();
+
+   function addToCartHandle() {
+        if(!user){
+            navigate("/login");
+            return;
+        }
+        dispatch(addCart(product));
+        
+   }
 
    if (error) return <div className="text-white pt-20">Error: {error}</div>
     if (!product) return <div className="text-white pt-20">Loading Product...</div>
@@ -68,7 +87,8 @@ function OfferDetails() {
                     <img className="max-w-[85%] h-auto md:h-[400px] lg:h-[500px]" src={product?.image}/>
 
                     <div className="flex items-center gap-2">
-                        <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]">Add to cart</button>
+                        <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
+                        onClick={addToCartHandle}>Add to cart</button>
                         <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]">Buy now</button>
                     </div>
                 </div>

@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import LoaderProduct from '../assets/UIcomponents/productLoader';
 import { FaCalendar } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { signup } from "../privateRouter/authendication/authSlice";
-import { login } from "../privateRouter/authendication/authSlice";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addCart } from "../privateRouter/authendication/productSlice";
 
 function ProductionSection(){
     const [datas,setDatas]=useState([]);
@@ -69,14 +69,14 @@ function ProductionSection(){
     },[hasMore,datas]);
 
     const user=useSelector((state)=> state.auth.user);
-    function addToCartHandler(products){
+    const dispatch = useDispatch();
+
+    function handlerOfCart(product){
         if(!user){
             navigate("/login");
             return;
         }
-
-        // dispatch(addToCart(products));
-
+        dispatch(addCart(product));
     }
 
     return(
@@ -104,7 +104,7 @@ function ProductionSection(){
                             </div>
                             <div>
                                 <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
-                                onClick={addToCartHandler}>Add to cart</button>
+                                onClick={()=>handlerOfCart(product)}>Add to cart</button>
                             </div>
                         </div>
                         

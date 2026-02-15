@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { addCart } from "../privateRouter/authendication/productSlice";
 
 function MainProducts(){
     const [product,setProduct]=useState(null);
@@ -23,6 +26,19 @@ function MainProducts(){
         }
         productsSection();
     },[id])
+
+
+    const navigate = useNavigate();
+    const user = useSelector((state)=>state.auth.user);
+    const dispatch=useDispatch();
+
+    function handlerAddToCart() {
+        if(!user){
+            navigate("/login");
+            return;
+        }
+        dispatch(addCart(product));
+    }
 
     if (error) return <div className="text-white pt-20">Error: {error}</div>
     if (!product) return <div className="text-white pt-20">Loading Product...</div>
@@ -113,7 +129,8 @@ function MainProducts(){
                 <div className="flex flex-col gap-2 items-center md:order-1 ">
                     <img className="w-[290px] h-auto sm:w-[350px] lg:w-[450px]" src={product.images?.[0]} alt={product.title}/>
                     <div className="flex justify-center gap-2">
-                        <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]">Add to cart</button>
+                        <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
+                        onClick={handlerAddToCart}>Add to cart</button>
                         <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]">Buy now</button>
                     </div>
                 </div>   

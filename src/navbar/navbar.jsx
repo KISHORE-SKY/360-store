@@ -7,7 +7,8 @@ import { FaUserCircle } from "react-icons/fa";
 import {useTheme} from './themeContext';
 import { useDispatch } from "react-redux";
 import { logout } from "../privateRouter/authendication/authSlice";
-// import { useNavigate } from "react-router-dom";
+import CartComponent from '../assets/UIcomponents/cart';
+import { cartClear } from "../privateRouter/authendication/productSlice"
 
 import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -55,10 +56,9 @@ function NavBarSection(){
         setAnchorEl(null);
     };
 
+
         const dispatch=useDispatch();
         const navigate=useNavigate();
-
-        
 
         const handleClickItem=(option)=>{
             handleClose();
@@ -66,12 +66,16 @@ function NavBarSection(){
             if (option.path) {
                 navigate(option.path);  
             } else if (option.action === 'logout') {
-        
-                // localStorage.removeItem('token');
-                // localStorage.removeItem('user');
                 dispatch(logout());
+                dispatch(cartClear());
                 navigate('/');
             }
+        }
+
+        function logOutHandler(){
+            dispatch(logout());
+            dispatch(cartClear());
+            navigate("/");
         }
     
     return(
@@ -91,7 +95,6 @@ function NavBarSection(){
                     <div className="md:flex md:items-center hidden md:mt-[3px] md:flex md:items-center md:gap-1 hidden md:bg-text-navbar md:text-green-navbar md:px-[10px] md:rounded-md md:fit
                         text-green-navbar 
                         md:w-[300px] lg:w-[400px]">
-                         
                        
                     </div>
                 </nav>
@@ -106,14 +109,14 @@ function NavBarSection(){
                  md:w-auto md:max-h-full text-[#f0edee] `}>
                     
                     <li><Link to='/' className="navbar-lists">Home</Link></li>
-                    <li><a className="navbar-lists">Products</a></li>
-                    <li><Link className="navbar-lists">Contact</Link></li>
+                    <li><a className="navbar-lists" href="#product">Products</a></li>
+                    <li><a className="navbar-lists" href="#contact">Contact</a></li>
                     <button className="button-navbar md:hidden" ><Link to="/signup">Signup</Link></button>
                     <button className="button-navbar md:hidden"><Link to="/login">Login</Link></button>
-                    <button className="button-navbar md:hidden">Logout</button>
+                    <button className="button-navbar md:hidden" onClick={logOutHandler}>Logout</button>
                     <div className="w-[25px] flex items-center" onClick={toggleTheme}>
-                        {theme==='dark' ? <MdSunny className="text-2xl h-auto cursor-pointer"/>
-                        : <BsFillMoonStarsFill className="text-1xl h-auto cursor-pointer"/>}
+                        {theme==='dark' ? <MdSunny className="text-2xl h-auto cursor-pointer hover:opacity-50"/>
+                        : <BsFillMoonStarsFill className="text-1xl h-auto cursor-pointer hover:opacity-50"/>}
                     </div>
                     
                     
@@ -165,6 +168,8 @@ function NavBarSection(){
                     ))}
                     </Menu>
                 </div>
+
+                <CartComponent />
    
                 </ul>
                 
