@@ -58,11 +58,17 @@ function OfferFetchHook() {
                                         <p className="text-lg font-semibold">{item.rating.rate}</p>
                                         <FaStar className="text-yellow-500 text-lg" />
                                     </div>
+                                    <button className="mt-6 w-fit self-start md:self-center bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]">
+                                        <Link to={`/offerProducts/${item.id}`}>Explore Product</Link>
+                                    </button>
+                                    
+                                
                             </section>
                             <section className="flex justify-center md:items-center">
                                 <Link to={`/offerProducts/${item.id}`} className="w-fit self-center">
                                     <img src={item.image} className="max-w-[300px] h-[280px] self-center md:h-[325px] md:max-w-[90%] cursor-pointer"/>
                                 </Link>
+                                
                             </section>
                     
                         </div>  

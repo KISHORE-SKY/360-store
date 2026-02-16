@@ -71,19 +71,19 @@ function ProductionSection(){
     const user=useSelector((state)=> state.auth.user);
     const dispatch = useDispatch();
 
-    function handlerOfCart(product){
+    function handlerOfCart(item){
         if(!user){
             navigate("/login");
             return;
         }
-        dispatch(addCart(product));
+        dispatch(addCart(item));
     }
 
     return(
         <>
             <section className="grid grid-cols-1 justify-center pt-3 gap-6 sm:grid-cols-2 sm:items-center md:grid-cols-2 lg:grid-cols-3">
                 {visibleProducts.map(item=>(
-                    <div key={item.id} className="grid grid-cols-[minmax(250px,275px)] justify-center items-center p-3 bg-primary-bg rounded-md text-primary-text h-auto sm:h-[425px]
+                    <div key={item.id} className="grid grid-cols-[minmax(250px,275px)] justify-center items-center p-3 bg-primary-bg rounded-md text-primary-text h-auto sm:h-[475px]
                     hover:shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] hover:translate-y-[-5px] transition-all duration-200 ease">
                         <div className="flex justify-center">
                             <Link to={`/products/${item.id}`}>
@@ -102,9 +102,14 @@ function ProductionSection(){
                                 <p className=" text-md lg:text-md">{item.rating}</p>
                                 <FaStar className="text-yellow-500 lg:text-md"/>
                             </div>
-                            <div>
+                            <div className="flex flex-col gap-2">
                                 <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
-                                onClick={()=>handlerOfCart(product)}>Add to cart</button>
+                                onClick={()=>handlerOfCart(item)}>Add to cart</button>
+
+                                <Link to={`/products/${item.id}`}>
+                                    <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
+                                    >Explore Product</button>
+                                </Link>
                             </div>
                         </div>
                         

@@ -9,6 +9,8 @@ import { MdOutlineManageAccounts } from "react-icons/md";
 
 import { useDispatch } from "react-redux";
 import { signup } from "../../privateRouter/authendication/authSlice";
+import { useNavigate } from "react-router-dom";
+
 
 function SignupForm(){
     const [signUpusername,setSignupUsername]=useState('');
@@ -121,6 +123,8 @@ function SignupForm(){
         setConfirmPasswordShow('password');
     }
 
+
+    const navigate=useNavigate();
     function SignUpValidation(event) {
         event.preventDefault();
      
@@ -131,8 +135,8 @@ function SignupForm(){
 
         if(usernameValid && emailValid && passwordValid && confirmValid){
             dispatch(signup({username:signUpusername}));
-            //dispatch(signup({useremail:signupEmail})); 
             setSigned(true);
+            navigate("/")
         }
         else{
             setSigned(false);

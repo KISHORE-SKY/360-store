@@ -12,7 +12,7 @@ const productSlice = createSlice({
     reducers:{
         addCart:(state,action)=>{
             const product = action.payload;
-            console.log("PAYLOAD TYPE:", action.payload);
+            //console.log("PAYLOAD TYPE:", action.payload);
 
             const existingProduct = state.cartItems.find((item)=>item.id === product.id);
             if(existingProduct){
@@ -27,12 +27,11 @@ const productSlice = createSlice({
             );
 
             localStorage.setItem("cart", JSON.stringify(state.cartItems));
-            
-            
 
         },
+        
         cartClear:(state,action)=>{
-            state.cart=[];
+            state.cartItems=[];
             state.totalPrice=0;
             localStorage.removeItem("cart");
         }

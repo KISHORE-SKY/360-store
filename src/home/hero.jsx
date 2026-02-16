@@ -18,7 +18,7 @@ function HeroSection() {
                     <OfferFetchHook />
                 </section>
 
-                <section className='mt-4 pt-7 flex flex-col items-center' id="product">
+                <section className='mt-4 pt-7 flex flex-col items-center'>
                     <h1 className='text-lg font-bold lg:text-2xl md:text-2xl'>Products</h1>
                     <div >
                         <ProductionSection/>

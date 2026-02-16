@@ -7,6 +7,8 @@ import { FaEyeSlash } from "react-icons/fa";
 import { useDispatch } from "react-redux";
 import { login } from "../../privateRouter/authendication/authSlice";
 import { MdOutlineManageAccounts } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
+
 
 function Login(){
     const [loginUsername,setLoginUsername]=useState('');
@@ -54,6 +56,7 @@ function Login(){
         
     }
 
+    const navigate=useNavigate();
     function LoginHandler(event){
         event.preventDefault();
         const isValidUsername= loginUserNameCheck();
@@ -66,6 +69,7 @@ function Login(){
             
             dispatch(login({username:loginUsername})) 
             setClientLogged(true)
+            navigate("/")
         }
         else{
             setClientLogged(false);

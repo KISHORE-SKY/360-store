@@ -10,6 +10,7 @@ import MainProducts from './productDetails/products';
 import Login from './assets/UIcomponents/login';
 import SignupForm from './assets/UIcomponents/signup.jsx';
 import Footer from './footerSection/footer'
+import Dashboard from './privateRouter/adminDashboard';
 
 import { Provider } from "react-redux";
 import { store } from "./app/store";
@@ -39,6 +40,10 @@ const routerPages= createBrowserRouter([
       {
         path:'/signup',
         element:<SignupForm />
+      },
+      {
+        path:'/admin',
+        element:<Dashboard />
       },
       {
         path:'/footer',

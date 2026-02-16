@@ -109,7 +109,7 @@ function NavBarSection(){
                  md:w-auto md:max-h-full text-[#f0edee] `}>
                     
                     <li><Link to='/' className="navbar-lists">Home</Link></li>
-                    <li><a className="navbar-lists" href="#product">Products</a></li>
+                    <li><Link className="navbar-lists" to="/">Products</Link></li>
                     <li><a className="navbar-lists" href="#contact">Contact</a></li>
                     <button className="button-navbar md:hidden" ><Link to="/signup">Signup</Link></button>
                     <button className="button-navbar md:hidden"><Link to="/login">Login</Link></button>
