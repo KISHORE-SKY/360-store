@@ -4,6 +4,7 @@ import { FaStar } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addCart } from "../privateRouter/authendication/productSlice";
+import NormalizeProducts from "../utils/normalizeApi";
 
 function MainProducts(){
     const [product,setProduct]=useState(null);
@@ -37,7 +38,8 @@ function MainProducts(){
             navigate("/login");
             return;
         }
-        dispatch(addCart(product));
+        const normalize=NormalizeProducts(product);
+        dispatch(addCart(normalize));
     }
 
     if (error) return <div className="text-white pt-20">Error: {error}</div>

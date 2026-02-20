@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCart } from "../privateRouter/authendication/productSlice";
+import NormalizeProducts from "../utils/normalizeApi";
 
 function ProductionSection(){
     const [datas,setDatas]=useState([]);
@@ -76,7 +77,8 @@ function ProductionSection(){
             navigate("/login");
             return;
         }
-        dispatch(addCart(item));
+        const normalize = NormalizeProducts(item);
+        dispatch(addCart(normalize));
     }
 
     return(

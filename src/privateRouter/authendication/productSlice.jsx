@@ -26,6 +26,8 @@ const productSlice = createSlice({
             (total,item)=>total + item.price * item.quantity,0
             );
 
+            const removeItems=state.cartItems.filter((item)=>item.id ===! item.id)
+
             localStorage.setItem("cart", JSON.stringify(state.cartItems));
 
         },

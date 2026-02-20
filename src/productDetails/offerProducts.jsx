@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addCart } from "../privateRouter/authendication/productSlice";
+import NormalizeProducts from "../utils/normalizeApi";
 
 
 function OfferDetails() {
@@ -35,13 +36,13 @@ function OfferDetails() {
    const user = useSelector((state)=>state.auth.user);
    const dispatch=useDispatch();
 
-   function addToCartHandle() {
+   function addToCartHandle(product) {
         if(!user){
             navigate("/login");
             return;
         }
-        dispatch(addCart(product));
-        
+        const normalize=NormalizeProducts(product)
+        dispatch(addCart(normalize));
    }
 
    if (error) return <div className="text-white pt-20">Error: {error}</div>
@@ -88,7 +89,7 @@ function OfferDetails() {
 
                     <div className="flex items-center gap-2">
                         <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
-                        onClick={addToCartHandle}>Add to cart</button>
+                        onClick={()=>addToCartHandle(product)}>Add to cart</button>
                         <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]">Buy now</button>
                     </div>
                 </div>
