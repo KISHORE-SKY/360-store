@@ -1,6 +1,8 @@
 import { FaUserAstronaut } from "react-icons/fa6";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FaMoneyCheckAlt } from "react-icons/fa";
+import { removeFromCart } from "./authendication/productSlice";
+import { useNavigate } from "react-router-dom";
 
 
 function Dashboard(){
@@ -13,9 +15,14 @@ function Dashboard(){
 
     const productTotal=useSelector((state)=>state.product.totalPrice);
 
-    function removeCartHandler(){
-        
+    const dispatch=useDispatch();
+    const navigate=useNavigate();
+
+    function handleRemove(id){
+        dispatch(removeFromCart(id));
+        navigate(0);
     }
+    
 
     return(
         <>
@@ -37,14 +44,14 @@ function Dashboard(){
                 <div className="grid grid-cols-[minmax(290px,300px)] justify-center gap-4 p-2 sm:grid-cols-[minmax(350px,400px)]
                 md:grid-cols-[minmax(290px,300px)_minmax(290px,300px)] lg:grid-cols-[repeat(auto-fit,minmax(350px,375px))]">
                     {convertedItems.map((items)=>(
-                    <div className="bg-primary-bg p-3 h-[360px] text-primary-text flex flex-col gap-1 items-center justify-center
+                    <div className="bg-primary-bg p-3 h-[375px] text-primary-text flex flex-col gap-1 items-center justify-center
                      p-2 rounded-lg hover:shadow-[0px_3px_8px_1px_rgba(0,0,0,0.2)] hover:scale-100.3 transition-all duration-170 ease-out" key={items.id}>
                         <img src={items.image} className="w-[150px] h-auto sm:w-[200px] "/>
                         <h1>{items?.title}</h1>
                         <p className="font-semibold text-lg">${items?.price}</p>
 
                         <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
-                        >remove cart</button>
+                        onClick={()=>handleRemove(items.id)}>remove cart</button>
                     </div>
                    
                 ))}
