@@ -20,7 +20,7 @@ function Dashboard(){
 
     function handleRemove(id){
         dispatch(removeFromCart(id));
-        navigate(0);
+        //navigate(0);
     }
     
 

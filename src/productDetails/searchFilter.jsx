@@ -8,15 +8,29 @@ function Search() {
 
     const [inputValue,setInputValue]=useState("");
     const [error,setError]=useState('');
-    const [data,setData]=useState([]);
-    //const [open,setOpen]=useState(false);  
+    const [data,setData]=useState([]); 
     const wrapperRef=useRef(null);  
     const [isTouch,setIsTouch] = useState(false);
+    const [debouncing,setDebouncing]=useState(inputValue);
     
+
+     useEffect(()=>{
+        const timer=setTimeout(()=>{
+            setDebouncing(inputValue);
+        },500);
+
+        return ()=> clearTimeout(timer);
+    },[inputValue]);
 
     useEffect(()=>{
         async function searchProducts() {
-            const url=(`https://dummyjson.com/products?q=${inputValue}`);
+
+            if(!debouncing.trim()){
+                setData([]);
+                return;
+            }
+
+            const url=(`https://dummyjson.com/products?q=${debouncing}`);
 
             try{
                 const response=await fetch(url)
@@ -32,16 +46,16 @@ function Search() {
             }
         }
         searchProducts();
-    },[inputValue])
+    },[debouncing])
+   
 
-    function inputHandler(event){
-        setInputValue(event.target.value);
-        console.log(typeof inputValue);
-    }
+    const [filteredProducts,setFilteredProducts]=useState(data);
     
-    const filteredProducts = data.filter(item=>
-            item.title.toLowerCase().includes(inputValue.toLowerCase())
-        )
+        useEffect(()=>{
+            setFilteredProducts(data.filter(item=>
+                item.title.toLowerCase().includes(debouncing.toLowerCase())
+            ))
+        },[data,debouncing])    
 
     function clickHandler(){
         setIsTouch(false)
@@ -61,7 +75,9 @@ function Search() {
                     <label htmlFor="searches" className="text-primary-bg"><FaSearch /></label>
                     
                     <input type='search' placeholder='Search' name='searches' id='searches' 
-                    value={inputValue} onChange={inputHandler}
+                    value={inputValue} onChange={(e)=>{setInputValue(e.target.value)
+                        console.log(e.target.value);
+                    }}
                     
                     className='bg-primary-text text-primary-bg w-[250px] outline-none rounded-2xl h-[37px]
                     placeholder:text-primary-bg 
@@ -69,10 +85,6 @@ function Search() {
                     />
                     
                 </div>
-                
-
-                {/* {error && <p>{error}</p>} */}
-
                 
                 
                 {isTouch && 
@@ -83,6 +95,7 @@ function Search() {
                    {inputValue && filteredProducts.length === 0 && (
                     <p>Product not available</p>
                     )}
+                    {debouncing.length === 0 && <p>search the products...</p>}
 
                     {filteredProducts.map(item=>(
                     <Link to={`/products/${item.id}`} key={item.id}>
