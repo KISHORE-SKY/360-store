@@ -1,15 +1,13 @@
 import { FaShoppingCart } from "react-icons/fa";
 import { useSelector } from "react-redux";
-//import { Link } from "react-router-dom";
-//import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 
 function CartComponent() {
 
     const cartItems=useSelector(state=>state.product.cartItems);
     const user=useSelector(state=>state.auth.user);
 
-   // const dispatch=useDispatch();
     const navigate=useNavigate();
 
     function adminPageHandler(){

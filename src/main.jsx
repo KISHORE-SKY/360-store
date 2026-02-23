@@ -44,10 +44,6 @@ const routerPages= createBrowserRouter([
       {
         path:'/admin',
         element:<Dashboard />
-      },
-      {
-        path:'/footer',
-        element:<Footer />
       }
      
     ]

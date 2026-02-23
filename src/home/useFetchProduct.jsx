@@ -89,7 +89,7 @@ function ProductionSection(){
                     hover:shadow-[0px_0px_10px_1px_rgba(0,0,0,0.2)] hover:translate-y-[-5px] transition-all duration-200 ease">
                         <div className="flex justify-center">
                             <Link to={`/products/${item.id}`}>
-                                <img className="w-[225px] h-auto sm:w-[250px] sm:h-[250px]" src={item.images?.[0]} alt={item.title}/>
+                                <img className="w-[225px] h-auto sm:w-[250px] sm:h-[250px]" src={item.images?.[0]} alt={item.title} loading="lazy"/>
                             </Link>
                             
                         </div>

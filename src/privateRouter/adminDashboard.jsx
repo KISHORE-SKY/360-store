@@ -26,7 +26,7 @@ function Dashboard(){
 
     return(
         <>
-            <section className="pt-[90px] pb-8 bg-bg-section grid grid-cols-1 gap-4">
+            <section className="pt-[90px] pb-8 bg-bg-section grid grid-cols-1 gap-4 min-h-screen">
                 <div className="flex flex-col gap-3 sm:items-center sm:justify-between sm:flex-row p-2 sm:px-5">
                     <div className="flex items-center gap-2">
                         <FaUserAstronaut className="text-2xl"/>
@@ -44,9 +44,9 @@ function Dashboard(){
                 <div className="grid grid-cols-[minmax(290px,300px)] justify-center gap-4 p-2 sm:grid-cols-[minmax(350px,400px)]
                 md:grid-cols-[minmax(290px,300px)_minmax(290px,300px)] lg:grid-cols-[repeat(auto-fit,minmax(350px,375px))]">
                     {convertedItems.map((items)=>(
-                    <div className="bg-primary-bg p-3 h-[375px] text-primary-text flex flex-col gap-1 items-center justify-center
+                    <div className="bg-primary-bg p-3 h-[425px] text-primary-text flex flex-col gap-1 items-center justify-center
                      p-2 rounded-lg hover:shadow-[0px_3px_8px_1px_rgba(0,0,0,0.2)] hover:scale-100.3 transition-all duration-170 ease-out" key={items.id}>
-                        <img src={items.image} className="w-[150px] h-auto sm:w-[200px] "/>
+                        <img src={items.image} alt={items.title} loading="lazy" className="w-[150px] h-auto sm:w-[200px] "/>
                         <h1>{items?.title}</h1>
                         <p className="font-semibold text-lg">${items?.price}</p>
 

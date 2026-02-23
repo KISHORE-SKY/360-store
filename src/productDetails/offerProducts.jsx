@@ -85,7 +85,7 @@ function OfferDetails() {
                 </div>
 
                 <div className="flex flex-col justify-center gap-3 items-center md:order-1">
-                    <img className="max-w-[85%] h-auto md:h-[400px] lg:h-[500px]" src={product?.image}/>
+                    <img className="max-w-[85%] h-auto md:h-[400px] lg:h-[500px]" src={product?.image} alt={product?.title} loading="lazy"/>
 
                     <div className="flex items-center gap-2">
                         <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"

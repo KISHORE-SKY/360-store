@@ -66,7 +66,7 @@ function OfferFetchHook() {
                             </section>
                             <section className="flex justify-center md:items-center">
                                 <Link to={`/offerProducts/${item.id}`} className="w-fit self-center">
-                                    <img src={item.image} className="max-w-[300px] h-[280px] self-center md:h-[325px] md:max-w-[90%] cursor-pointer"/>
+                                    <img src={item.image} alt={item.title} loading="lazy" className="max-w-[300px] h-[280px] self-center md:h-[325px] md:max-w-[90%] cursor-pointer"/>
                                 </Link>
                                 
                             </section>

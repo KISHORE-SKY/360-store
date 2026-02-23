@@ -8,9 +8,13 @@ function App() {
   return (
     <>
       <ThemeProvider>
-        <NavBarSection />
-        <Outlet />
-        <Footer />
+        <div className='min-h-screen flex flex-col '>
+          <NavBarSection />
+          <main className="flex-1 ">
+            <Outlet />
+          </main>
+          <Footer />
+        </div>
       </ThemeProvider>
     </>
   );

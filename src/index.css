@@ -45,6 +45,9 @@
     html {
         @apply scroll-smooth
     }
+    html, body, #root {
+        height: 100%;
+    }
     .button-navbar{
         @apply bg-text-navbar text-green-navbar rounded-md p-1 text-sm cursor-pointer hover:opacity-50
     }

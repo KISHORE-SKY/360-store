@@ -129,7 +129,7 @@ function MainProducts(){
 
                 
                 <div className="flex flex-col gap-2 items-center md:order-1 ">
-                    <img className="w-[290px] h-auto sm:w-[350px] lg:w-[450px]" src={product.images?.[0]} alt={product.title}/>
+                    <img className="w-[290px] h-auto sm:w-[350px] lg:w-[450px]" src={product.images?.[0]} alt={product.title} loading="lazy"/>
                     <div className="flex justify-center gap-2">
                         <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
                         onClick={handlerAddToCart}>Add to cart</button>
