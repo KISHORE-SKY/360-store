@@ -20,10 +20,15 @@ function ProductionSection(){
     const navigate = useNavigate();
 
     useEffect(()=>{
+        const cancelController=new AbortController();
+        const signal=cancelController.signal
+
         async function productsHome() {
             const url=(`https://dummyjson.com/products`);
             try{
-                const response=await fetch(url)
+                const response=await fetch(url,{
+                    signal:signal
+                })
                 if(!response.ok){
                     throw new Error(`couldn't fetch the products:${response.status}`);
                 }
@@ -35,10 +40,20 @@ function ProductionSection(){
                 
             }
             catch(error){
-                setError(error.message)
+                if(error.name==='AbortError'){
+                    console.log(`fetch aborted`);
+                }
+                else{
+                    setError(error.message);
+                }
+                
             }
         }
         productsHome();
+
+        return ()=>{
+            cancelController.abort();
+        }
     },[]);
 
     useEffect(()=>{

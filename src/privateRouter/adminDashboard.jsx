@@ -2,7 +2,12 @@ import { FaUserAstronaut } from "react-icons/fa6";
 import { useDispatch, useSelector } from "react-redux";
 import { FaMoneyCheckAlt } from "react-icons/fa";
 import { removeFromCart } from "./authendication/productSlice";
-import { useNavigate } from "react-router-dom";
+
+import * as React from 'react';
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
+import Button from '@mui/material/Button';
+
 
 
 function Dashboard(){
@@ -14,15 +19,18 @@ function Dashboard(){
     const convertedItems=JSON.parse(carts);
 
     const productTotal=useSelector((state)=>state.product.totalPrice);
-
     const dispatch=useDispatch();
-    const navigate=useNavigate();
 
+    const [open, setOpen] = React.useState(false);
     function handleRemove(id){
         dispatch(removeFromCart(id));
-        //navigate(0);
+        setOpen(true);
+        setTimeout(()=>{
+            setOpen(false);
+        },700)
     }
-    
+
+
 
     return(
         <>
@@ -50,8 +58,22 @@ function Dashboard(){
                         <h1>{items?.title}</h1>
                         <p className="font-semibold text-lg">${items?.price}</p>
 
-                        <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
-                        onClick={()=>handleRemove(items.id)}>remove cart</button>
+                        {/* <button className="bg-primary-text cursor-pointer text-primary-bg p-1 pr-2 pl-2 rounded-[20px]"
+                        >remove cart</button> */}
+
+                        
+
+                        <div>
+                            <Button onClick={()=>handleRemove(items.id)} sx={{color:'var(--color-primary-bg)',backgroundColor:'var(--color-primary-text)',borderRadius:'20px'}}
+                            variant="contained">remove cart</Button>
+                            <Backdrop
+                                sx={(theme) => ({ color: '#ffffff', zIndex: theme.zIndex.drawer + 1 ,backgroundColor:'rgba(0,0,0,0.2)' })}
+                                open={open}
+                            >
+                            <CircularProgress color="inherit" />
+                            </Backdrop>
+                        </div>
+
                     </div>
                    
                 ))}

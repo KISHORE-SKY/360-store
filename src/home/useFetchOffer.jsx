@@ -12,9 +12,16 @@ function OfferFetchHook() {
     const [data,setData]=useState([]);
     const [errorState,setErrorState]=useState('');
     useEffect(()=>{
-       async function offerFetch() {
+        const cancelController=new AbortController()
+        const signal=cancelController.signal
+
+        async function offerFetch() {
          try{
-            const response=await fetch(`https://fakestoreapi.com/products`)
+            const response=await fetch(`https://fakestoreapi.com/products`,
+                {
+                    signal : signal
+                }
+            )
             if(!response.ok){
                 throw new Error(`couldn't fetch:${(response.status)}`)
             }
@@ -23,11 +30,23 @@ function OfferFetchHook() {
             console.log(result);
         }
         catch(errorState){
-            setErrorState(errorState.message);
+            if(errorState.name==='AbortError'){
+                console.log(`fetch aborted`);
+            }
+            else{
+                setErrorState(errorState.message);
+            }
+            
         }
+        
        }
        offerFetch();
+
+       return ()=>{
+        cancelController.abort();
+       }
     },[])
+
     return(
         <>
             <Swiper
