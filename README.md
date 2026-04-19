@@ -1,16 +1,34 @@
-# React + Vite
+Project Name:
+360-Store
+  
+  360-store is a modern e-commerce web application built with React. It provides a seamless shopping experience with essential         features like product browsing, cart management, and user authentication.
+  The project focuses on building a clean UI, smooth navigation, and scalable frontend architecture.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+Features:
+Cart Management  
+  Add items to cart and remove them easily
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Authentication (Login / Signup)  
+  User data is stored in localStorage
 
-## React Compiler
+Protected Routes 
+  Private routes (e.g., admin) accessible only to authenticated users
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Public Routes  
+  Open product listing page for all users
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Tech Stacks:
+React JS
+Tailwind CSS
+React Redux
+React Router
+MUI
+
+
+Live Site:
+https://360-store.vercel.app/
+
+Screenshot:
+<img width="1366" height="768" alt="image" src="https://github.com/user-attachments/assets/181f3552-3462-4cf7-a399-68c8bad5455b" />
